@@ -302,7 +302,7 @@ void validifyCmd(char** input, int numberOfWords){
     // if just a regular command w no redirections
     else{
         void executeSingleProg();
-        executeSingleProg(input);
+        executeSingleProg(input, numberOfWords);
         // return
         return;
     }
@@ -833,7 +833,7 @@ void executeProgWRedir(char** input, int numberOfWords){
     }
     return; 
 }
-void executeSingleProg(char** input){
+void executeSingleProg(char** input, int numberOfWords){
     // fork a child
     pid_t pid = fork();
     // if forking is successful 
@@ -872,7 +872,7 @@ void executeSingleProg(char** input){
             Job* sus = (Job*) malloc(sizeof(Job));
             sus->pid = pid;
             sus->command = input;
-            sus->numberOfWords = 1;
+            sus->numberOfWords = numberOfWords;
             // Add to suspended list
             int getIndex();
             int a = getIndex();
